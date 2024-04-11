@@ -51,6 +51,8 @@ ListD::~ListD()
       delete cur;
       cur = nextNode;
     }
+ delete head;
+ delete tail;
 }
 
 doubleNode* ListD::FindPosition(int pos)
