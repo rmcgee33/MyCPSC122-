@@ -62,7 +62,15 @@ void TestCopyConstructor()
  cout << endl;
  cout << "Traverse copy" << endl;
  lst2->PrintForward();
-
+ cout << endl;
+ cout << "Traverse backwards" << endl;
+ lst2->PrintBackward();
+ cout << endl;
+ cout << "Delete" << endl;
+ lst2->Delete(1);
+  cout << " list after deleting item"<< endl;
+ lst2-> PrintForward();
+ cout << endl;
  //delete lst1;
  //delete lst2;
 }
