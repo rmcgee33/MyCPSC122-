@@ -1,4 +1,4 @@
-git #include <iostream>
+#include <iostream>
 #include <climits>
 using namespace std;
 
@@ -44,31 +44,16 @@ void ListD::InitializeVars()
 //how would you do this?
 ListD::~ListD()
 {
-  doubleNode* cure = head -> next;
+  doubleNode* cur = head -> next;
   while (cur != tail)
     {
       doubleNode* nextNode = cur -> next;
       delete cur;
       cur = nextNode;
     }
- delete head;
- delete tail;
+  delete head;
+  delete tail;
 }
-
-doubleNode* ListD::FindPosition(int pos)
-{
- //Inserting at the tail is a special case.  It can be made much more efficient than
- //this.
- doubleNode* cur = head;
- int i = 0;  //begin at the dummy node
- while (i < pos - 1)
- {
-  cur = cur->next;
-  i++;
- }
- return cur;
-} 
-
 void ListD::Insert(itemType item, int pos)
 {
  //new node goes between these two nodes
@@ -100,4 +85,88 @@ void ListD::PrintForward()
   i++;
  }
 }
+void ListD::PrintBackward()
+{
+  doubleNode* cur = tail->prev;
+  int i = 0;
+  while (i < length)
+    {
+      cout << cur->item << endl;
+      cur = cur->prev;
+      i++;
+    }
+}
 
+  void ListD::Delete(int pos)  
+    {
+    doubleNode* cur = head->next;
+    int nodesDeleted = 0; // Counter for deleted nodes
+    int currentPosition = 1;
+
+    while (cur != tail && currentPosition != pos) {
+        cur = cur->next;
+        currentPosition++;
+    }
+
+    if (currentPosition == pos) {
+        cout << "Found item to delete: " << cur->item << endl;
+        cur->prev->next = cur->next;
+        cur->next->prev = cur->prev;
+        delete cur;
+        length--;
+        nodesDeleted++; // Increment counter
+    } else {
+        cout << "Position not found in the list." << endl;
+    }
+
+    return;
+  }
+int ListD::DeleteAll(itemType item) {
+    doubleNode* cur = head->next;
+    int nodesDeleted = 0; // Counter for deleted nodes
+
+    while(cur != tail) {
+        if (cur->item == item) {
+            cout << "Found item to delete: " << cur->item << endl;
+            cur->prev->next = cur->next;
+            cur->next->prev = cur->prev;
+            delete cur;
+            length--;
+            nodesDeleted++; // Increment counter
+            return nodesDeleted;
+        }
+        cur = cur->next;
+    }
+    cout << "Item not found in the list." << endl;
+    cout << cur->item << endl;
+    return nodesDeleted;
+}
+
+doubleNode* ListD::FindPosition(int pos) {
+    doubleNode* cur = head;
+    int currentPosition = 0;
+
+    while (cur != nullptr && currentPosition < pos - 1) {
+        cur = cur->next;
+        currentPosition++;
+    }
+
+    if (cur == nullptr || currentPosition != pos - 1) {
+        cout << "Error finding insertion point." << endl;
+        return nullptr;
+    }
+
+    return cur;
+}
+void ListD::Sort() {
+    for (doubleNode* i = head->next; i != tail; i = i->next) {
+        for (doubleNode* j = i->next; j != tail; j = j->next) {
+            if (i->item > j->item) {
+                // Swap the values
+                int temp = i->item;
+                i->item = j->item;
+                j->item = temp;
+            }
+        }
+    }
+}

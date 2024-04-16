@@ -22,29 +22,29 @@ void TestInsert()
  for (int i = 1; i <= 5; i++)
   lst->Insert(i,i);
 
- cout << "test general case insert" << endl;
+ cout << "Test general case insert" << endl;
  cout << "Passed Insert Test 1 if 1 through 5 appear on subsequent lines" << endl;
  lst->PrintForward();
  cout << endl;
 
- cout << "test insert at the head" << endl;
+ cout << "Test insert at the head" << endl;
  lst->Insert(0,1);
  cout << "Passed Insert Test 2 if 0 appears in position 1" << endl; 
  lst->PrintForward();
  cout << endl;
 
- cout << "test insert at the tail" << endl; 
+ cout << "Test insert at the tail" << endl; 
  lst->Insert(100,7);
  cout << "Passed Insert Test 3 if 100 appears in final position" << endl; 
  lst->PrintForward();
  cout << endl;
 
- cout << "test insert within the list" << endl; 
+ cout << "Test insert within the list" << endl; 
  lst->Insert(50,5);
  cout << "Passed Insert Test 4 if 50 appears in middle position" << endl; 
  lst->PrintForward();
  cout << endl;
- //delete lst;
+ //delete lst
 }
 
 void TestCopyConstructor()
